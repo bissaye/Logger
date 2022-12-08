@@ -33,7 +33,7 @@ namespace Logger.Services.Implementations
             int log_level_ranking = LogLevel.log_level_ranking[log_level];
             DateTime date = DateTime.Now;
 
-            if (log_level_ranking >= _log_ranking)
+            if (log_level_ranking <= _log_ranking)
             {
                 _Log.display(date, log_level, message);
             }
@@ -48,7 +48,7 @@ namespace Logger.Services.Implementations
             int log_level_ranking = LogLevel.log_level_ranking[log_level];
             DateTime date = DateTime.Now;
 
-            if (log_level_ranking >= _log_ranking)
+            if (log_level_ranking <= _log_ranking)
             {
                 _Log.display(date, log_level, message);
             }
@@ -62,7 +62,7 @@ namespace Logger.Services.Implementations
             string log_level = LogLevel.log_level["Information"];
             int log_level_ranking = LogLevel.log_level_ranking[log_level];
             DateTime date = DateTime.Now;
-            if (log_level_ranking >= _log_ranking)
+            if (log_level_ranking <= _log_ranking)
             {
                 _Log.display(date, log_level, message);
             }
@@ -77,7 +77,7 @@ namespace Logger.Services.Implementations
             int log_level_ranking = LogLevel.log_level_ranking[log_level];
             DateTime date = DateTime.Now;
             
-            if (log_level_ranking >= _log_ranking)
+            if (log_level_ranking <= _log_ranking)
             {
                 _Log.display(date, log_level, message);
             }
@@ -92,7 +92,7 @@ namespace Logger.Services.Implementations
             int log_level_ranking = LogLevel.log_level_ranking[log_level];
             DateTime date = DateTime.Now;
             
-            if (log_level_ranking >= _log_ranking)
+            if (log_level_ranking <= _log_ranking)
             {
                 _Log.display(date, log_level, message);
             }
