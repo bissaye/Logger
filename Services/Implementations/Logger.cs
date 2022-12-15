@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using AppName = System.Reflection.Assembly;
@@ -17,11 +18,12 @@ namespace Logger.Services.Implementations
     {
         private readonly Display _Log;
         private readonly int _log_ranking;
-        private StackTrace _stackTrace = new StackTrace();
         private string _methodName = new StackFrame(1).GetMethod().Name;
         private string _className = new StackFrame(1).GetMethod().DeclaringType.Name;
         private string _appName = AppName.GetEntryAssembly().GetName().Name;
+        private int _lineLog;
 
+        
 
         public Logger(string level = "Err")
         {
@@ -34,8 +36,9 @@ namespace Logger.Services.Implementations
             {
                 _log_ranking = LogLevel.log_level_ranking["Err"];
             }
-           
         }
+
+
         public string logDebug(string message)
         {
             string log_level = LogLevel.log_level["Debug"];
@@ -73,10 +76,10 @@ namespace Logger.Services.Implementations
             string log_level = LogLevel.log_level["Information"];
             int log_level_ranking = LogLevel.log_level_ranking[log_level];
             DateTime date = DateTime.Now;
-            
+
             if (log_level_ranking <= _log_ranking)
             {
-                Console.WriteLine($"level:{log_level_ranking} log level: {_log_ranking}");
+                //Console.WriteLine($"level:{log_level_ranking} log level: {_log_ranking}");
                 _Log.display(date, log_level, message, _className, _appName);
             }
             
