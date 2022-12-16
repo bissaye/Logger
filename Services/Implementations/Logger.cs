@@ -18,7 +18,6 @@ namespace Logger.Services.Implementations
     {
         private readonly Display _Log;
         private readonly int _log_ranking;
-        private string _methodName = new StackFrame(1).GetMethod().Name;
         private string _className = new StackFrame(1).GetMethod().DeclaringType.Name;
         private string _appName = AppName.GetEntryAssembly().GetName().Name;
 
