@@ -21,13 +21,12 @@ namespace Logger.Services.Implementations
         private string _methodName = new StackFrame(1).GetMethod().Name;
         private string _className = new StackFrame(1).GetMethod().DeclaringType.Name;
         private string _appName = AppName.GetEntryAssembly().GetName().Name;
-        private int _lineLog;
 
-        
 
         public Logger(string level = "Err")
         {
             _Log = new Display();
+            
             try
             {
                 _log_ranking = LogLevel.log_level_ranking[level];
@@ -39,7 +38,7 @@ namespace Logger.Services.Implementations
         }
 
 
-        public string logDebug(string message)
+        public string logDebug(string message, [CallerLineNumber] int lineNumber = 0, [CallerMemberName] string memberName = "")
         {
             string log_level = LogLevel.log_level["Debug"];
             int log_level_ranking = LogLevel.log_level_ranking[log_level];
@@ -47,15 +46,14 @@ namespace Logger.Services.Implementations
 
             if (log_level_ranking <= _log_ranking)
             {
-                Console.WriteLine($" level:{log_level_ranking} log level: {_log_ranking}");
-                _Log.display(date, log_level, message, _className, _appName);
+                _Log.display(date, log_level, message, _className, _appName, lineNumber, memberName);
             }
             
             string log = $"{date} : {log_level} : {message}";
             return log;
         }
 
-        public string logError(string message)
+        public string logError(string message, [CallerLineNumber] int lineNumber = 0, [CallerMemberName] string memberName = "")
         {
             string log_level = LogLevel.log_level["Error"];
             int log_level_ranking = LogLevel.log_level_ranking[log_level];
@@ -63,15 +61,14 @@ namespace Logger.Services.Implementations
 
             if (log_level_ranking <= _log_ranking)
             {
-                Console.WriteLine($" level:{log_level_ranking} log level: {_log_ranking}");
-                _Log.display(date, log_level, message, _className, _appName);
+                _Log.display(date, log_level, message, _className, _appName, lineNumber, memberName);
             }
             
             string log = $"{date} : {log_level} : {message}";
             return log;
         }
 
-        public string logInformation(string message)
+        public string logInformation(string message, [CallerLineNumber] int lineNumber = 0, [CallerMemberName] string memberName = "")
         {
             string log_level = LogLevel.log_level["Information"];
             int log_level_ranking = LogLevel.log_level_ranking[log_level];
@@ -79,15 +76,14 @@ namespace Logger.Services.Implementations
 
             if (log_level_ranking <= _log_ranking)
             {
-                //Console.WriteLine($"level:{log_level_ranking} log level: {_log_ranking}");
-                _Log.display(date, log_level, message, _className, _appName);
+                _Log.display(date, log_level, message, _className, _appName, lineNumber, memberName);
             }
             
             string log = $"{date} : {log_level} : {message}";
             return log;
         }
 
-        public string logTrace(string message)
+        public string logTrace(string message, [CallerLineNumber] int lineNumber = 0, [CallerMemberName] string memberName = "")
         {
             string log_level = LogLevel.log_level["Trace"];
             int log_level_ranking = LogLevel.log_level_ranking[log_level];
@@ -95,15 +91,14 @@ namespace Logger.Services.Implementations
             
             if (log_level_ranking <= _log_ranking)
             {
-                Console.WriteLine($" level:{log_level_ranking} log level: {_log_ranking}");
-                _Log.display(date, log_level, message, _className, _appName);
+                _Log.display(date, log_level, message, _className, _appName, lineNumber, memberName);
             }
             
             string log = $"{date} : {log_level} : {message}";
             return log;
         }
 
-        public string logWarning(string message)
+        public string logWarning(string message, [CallerLineNumber] int lineNumber = 0, [CallerMemberName] string memberName = "")
         {
             string log_level = LogLevel.log_level["Warning"];
             int log_level_ranking = LogLevel.log_level_ranking[log_level];
@@ -111,8 +106,7 @@ namespace Logger.Services.Implementations
             
             if (log_level_ranking <= _log_ranking)
             {
-                Console.WriteLine($" level:{log_level_ranking} log level: {_log_ranking}");
-                _Log.display(date, log_level, message, _className, _appName);
+                _Log.display(date, log_level, message, _className, _appName, lineNumber, memberName);
             }
                                     
             string log = $"{date} : {log_level} : {message}";

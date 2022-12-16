@@ -13,10 +13,8 @@ namespace Logger.Tools.Implementations
     public class Display : IDisplay
     {
         private string space = "  ";
-        private StackTrace _trace = new StackTrace(1);
-        private _frame = _trace.GetFrame(1);
 
-        public void display(DateTime date, string log_level, string message, string className, string appName)
+        public void display(DateTime date, string log_level, string message, string className, string appName, int line, string memberName)
         {
             
             Console.Write($"{date}{space}");
@@ -25,18 +23,7 @@ namespace Logger.Tools.Implementations
             Console.Write($"{log_level}");
             Console.BackgroundColor = ConsoleColor.Black;
             Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine($" Calling app : {appName}; Calling class : {className}; line : \n{message}");
-        }
-
-        public static int Line([CallerLineNumber] int lineNumber = 0)
-        {
-            return lineNumber;
-        }
-
-        public static int getLine()
-        {
-            
-            return _frame.GetFileLineNumber();
+            Console.WriteLine($" {appName} {className} {memberName} l.{line}: {message}");
         }
 
     }
