@@ -12,15 +12,16 @@ namespace Logger.Tools.Implementations
     {
         string space = "  ";
 
-        public void display(DateTime date, string log_level, string message)
+        public void display(DateTime date, string log_level, string message, string className, string appName)
         {
+            
             Console.Write($"{date}{space}");
             Console.BackgroundColor = ConsoleColors.color[log_level];
             Console.ForegroundColor = ConsoleColor.Black;
             Console.Write($"{log_level}");
             Console.BackgroundColor = ConsoleColor.Black;
             Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine($"{space}{message}");
+            Console.WriteLine($" Calling app : {appName}; Calling class : {className} :\n{message}");
         }
     }
 }
