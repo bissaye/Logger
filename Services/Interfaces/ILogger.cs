@@ -8,10 +8,10 @@ namespace Logger.Services.Interfaces
 {
     public interface ILogger
     {
-        public string logInformation(string message);
-        public string logDebug(string message);
-        public string logTrace(string message);
-        public string logWarning(string message);
-        public string logError(string message);
+        public string logInformation(string message, int line, string memberName);
+        public string logDebug(string message, int line, string memberName);
+        public string logTrace(string message, int line, string memberName);
+        public string logWarning(string message, int line, string memberName);
+        public string logError(string message, int line, string memberName);
     }
 }

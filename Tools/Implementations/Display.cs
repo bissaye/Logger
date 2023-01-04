@@ -2,22 +2,40 @@
 using Logger.Tools.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Logger.Tools.Implementations
 {
     public class Display : IDisplay
-
     {
-        public void display(DateTime date, string log_level, string message)
+        private string space = "  ";
+        string logString;
+        string shopId = IDisplay._request.Query["shopId"];
+
+        public void display(DateTime date, string log_level, string message, string className, string appName, int line, string memberName)
         {
-            Console.WriteLine(date);
+            
+            Console.Write($"{date}{space}");
             Console.BackgroundColor = ConsoleColors.color[log_level];
-            Console.WriteLine(log_level);
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.Write($"{log_level}");
             Console.BackgroundColor = ConsoleColor.Black;
-            Console.WriteLine(message);
+            Console.ForegroundColor = ConsoleColor.White;
+            logString = $" {appName}.{className}.{memberName}.line:{line}";
+
+            if (shopId != "" && shopId != null)
+            {
+                logString += $".ShopId: {shopId}.";
+            }
+
+            logString += $": {message}";
+
+            Console.WriteLine(logString);
         }
+
     }
 }
