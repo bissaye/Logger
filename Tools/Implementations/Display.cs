@@ -13,6 +13,8 @@ namespace Logger.Tools.Implementations
     public class Display : IDisplay
     {
         private string space = "  ";
+        string logString;
+        string shopId = IDisplay._request.Query["shopId"];
 
         public void display(DateTime date, string log_level, string message, string className, string appName, int line, string memberName)
         {
@@ -23,7 +25,16 @@ namespace Logger.Tools.Implementations
             Console.Write($"{log_level}");
             Console.BackgroundColor = ConsoleColor.Black;
             Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine($" {appName} {className} {memberName} l.{line}: {message}");
+            logString = $" {appName}.{className}.{memberName}.line:{line}";
+
+            if (shopId != "" && shopId != null)
+            {
+                logString += $".ShopId: {shopId}.";
+            }
+
+            logString += $": {message}";
+
+            Console.WriteLine(logString);
         }
 
     }
