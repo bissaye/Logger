@@ -16,12 +16,14 @@ namespace Logger.Services.Implementations
 {
     public class Logger : ILogger
     {
+        #region Properties
         private readonly Display _Log;
         private readonly int _log_ranking;
         private string _className = new StackFrame(1).GetMethod().DeclaringType.Name;
         private string _appName = AppName.GetEntryAssembly().GetName().Name;
+        #endregion
 
-
+        #region Constructors
         public Logger(string level = "Err")
         {
             _Log = new Display();
@@ -35,8 +37,9 @@ namespace Logger.Services.Implementations
                 _log_ranking = LogLevel.log_level_ranking["Err"];
             }
         }
+        #endregion
 
-
+        #region Methods
         public string logDebug(string message, [CallerLineNumber] int lineNumber = 0, [CallerMemberName] string memberName = "")
         {
             string log_level = LogLevel.log_level["Debug"];
@@ -111,5 +114,6 @@ namespace Logger.Services.Implementations
             string log = $"{date} : {log_level} : {message}";
             return log;
         }
+        #endregion
     }
 }

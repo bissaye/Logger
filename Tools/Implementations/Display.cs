@@ -15,6 +15,7 @@ namespace Logger.Tools.Implementations
         private string space = "  ";
         string logString;
         string shopId = IDisplay._request.Query["shopId"];
+        int responseStatusCode = IDisplay._response.StatusCode;
 
         public void display(DateTime date, string log_level, string message, string className, string appName, int line, string memberName)
         {
@@ -25,7 +26,8 @@ namespace Logger.Tools.Implementations
             Console.Write($"{log_level}");
             Console.BackgroundColor = ConsoleColor.Black;
             Console.ForegroundColor = ConsoleColor.White;
-            logString = $" {appName}.{className}.{memberName}.line:{line}";
+            logString = $" {appName}.{className}.{memberName}[{line}]" +
+                $".status{responseStatusCode}.source:{IDisplay._clientIpAddress}";
 
             if (shopId != "" && shopId != null)
             {
