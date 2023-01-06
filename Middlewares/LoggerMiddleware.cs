@@ -1,6 +1,7 @@
 ﻿using Logger.Tools.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Features;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,8 +21,13 @@ namespace Logger.Middlewares
 
         public async Task Invoke(HttpContext context)
         {
-            HttpRequest request = context.Request;
-            IDisplay._request = request;
+
+            var feature = context.Features.Get<IHttpConnectionFeature>();
+
+            IDisplay._request = context.Request;
+            IDisplay._response = context.Response;
+            IDisplay._clientIpAddress = context.Connection.RemoteIpAddress?.ToString();
+            IDisplay._serverIpAddress = feature?.LocalIpAddress.ToString();
 
             await _next(context);
         }
