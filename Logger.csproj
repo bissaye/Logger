@@ -13,15 +13,15 @@
 		<Authors>BISSAYE MBOULANA FRANCK HONORE</Authors>
 		<Company>Abyster</Company>
 		<Product>Logger</Product>
-		<Version>1.0.2</Version>
-		<AssemblyVersion>1.0.2</AssemblyVersion>
-		<FileVersion>1.0.2</FileVersion>
+		<Version>1.2.0</Version>
+		<AssemblyVersion>1.2.0</AssemblyVersion>
+		<FileVersion>1.2.0</FileVersion>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 		<OutputType>Library</OutputType>
 		<PackageId>Logger.Logger</PackageId>
 		<Description>
-			1.1.0 : mise à jour du format d'affichage, ajout des informations à afficher et update du middleware et des classes d'exception
+			1.2.0 : mise à jour du format d'affichage, ajout des informations à afficher et update du middleware et des classes d'exception
 			1.0.2 : mise à jour des packages
 			1.0.1 : mise à jour du format d'affichage des logs, ajout de l'affichage du nom de l'application, des classes et des numéros de lignes
 			1.0.0 : Ce projet a pour but de produire un de créer un fournisseur de log customisé et customisable qui puisse repondre et s'adapter au besoin de n'importel quel projet
