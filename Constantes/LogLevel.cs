@@ -10,6 +10,15 @@ namespace Logger.Constantes
     {
         public static Dictionary<string, string> log_level = new()
         {
+            {"Information" , "Information" },
+            {"Debug", "Debug" },
+            {"Trace", "Trace" },
+            {"Warning", "Warning" },
+            {"Error", "Error" }
+        };
+
+        public static Dictionary<string, string> log_level_display = new()
+        {
             {"Information" , "Inf" },
             {"Debug", "Deb" },
             {"Trace", "Tra" },
