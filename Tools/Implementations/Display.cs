@@ -21,7 +21,7 @@ namespace Logger.Tools.Implementations
         string terminalId;
         List<dynamic> errorCode;
 
-        public void display(DateTime date, string log_level, string message, string className, string appName, int line, string memberName)
+        public void display(DateTime date, string log_level_display, string message, string className, string appName, int line, string memberName)
         {
             _tokenInfo = new TokenInfo();
             _httpRequestInfo = new HttpRequestInfo();
@@ -55,9 +55,9 @@ namespace Logger.Tools.Implementations
             }
 
             Console.Write($"[{date}]{space}");
-            Console.BackgroundColor = ConsoleColors.color[log_level];
+            Console.BackgroundColor = ConsoleColors.color[log_level_display];
             Console.ForegroundColor = ConsoleColor.Black;
-            Console.Write($"{log_level}");
+            Console.Write($"{log_level_display}");
             Console.BackgroundColor = ConsoleColor.Black;
             Console.ForegroundColor = ConsoleColor.White;
 
