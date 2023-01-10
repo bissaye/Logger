@@ -1,6 +1,8 @@
 ﻿using Logger.Constantes;
 using Logger.Services.Interfaces;
+using Logger.Tools;
 using Logger.Tools.Implementations;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -16,27 +18,30 @@ namespace Logger.Services.Implementations
 {
     public class Logger : ILogger
     {
+        #region Properties
         private readonly Display _Log;
         private readonly int _log_ranking;
         private string _className = new StackFrame(1).GetMethod().DeclaringType.Name;
         private string _appName = AppName.GetEntryAssembly().GetName().Name;
-
-
-        public Logger(string level = "Err")
+        #endregion
+        private readonly IOptions<LoggingConfiguration> _options;
+        #region Constructors
+        public Logger(IOptions<LoggingConfiguration> options)
         {
             _Log = new Display();
-            
+            _options = options;
             try
             {
-                _log_ranking = LogLevel.log_level_ranking[level];
+                _log_ranking = LogLevel.log_level_ranking[_options.Value.Default];
             }
             catch (KeyNotFoundException ex)
             {
                 _log_ranking = LogLevel.log_level_ranking["Err"];
             }
         }
+        #endregion
 
-
+        #region Methods
         public string logDebug(string message, [CallerLineNumber] int lineNumber = 0, [CallerMemberName] string memberName = "")
         {
             string log_level = LogLevel.log_level["Debug"];
@@ -111,5 +116,6 @@ namespace Logger.Services.Implementations
             string log = $"{date} : {log_level} : {message}";
             return log;
         }
+        #endregion
     }
 }
