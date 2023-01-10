@@ -1,6 +1,8 @@
 ﻿using Logger.Constantes;
 using Logger.Services.Interfaces;
+using Logger.Tools;
 using Logger.Tools.Implementations;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -22,15 +24,15 @@ namespace Logger.Services.Implementations
         private string _className = new StackFrame(1).GetMethod().DeclaringType.Name;
         private string _appName = AppName.GetEntryAssembly().GetName().Name;
         #endregion
-
+        private readonly IOptions<LoggingConfiguration> _options;
         #region Constructors
-        public Logger(string level = "Inf")
+        public Logger(IOptions<LoggingConfiguration> options)
         {
             _Log = new Display();
-            
+            _options = options;
             try
             {
-                _log_ranking = LogLevel.log_level_ranking[level];
+                _log_ranking = LogLevel.log_level_ranking[_options.Value.Default];
             }
             catch (KeyNotFoundException ex)
             {
