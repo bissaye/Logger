@@ -10,6 +10,8 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Logger.Tools.Implementations;
+using Microsoft.Extensions.Options;
+using Logger.Tools;
 
 namespace Logger.Middlewares
 {
@@ -17,10 +19,10 @@ namespace Logger.Middlewares
     {
         private readonly RequestDelegate _next;
         private readonly LoggerService _logger;
-        public LoggerMiddleware(RequestDelegate next)
+        public LoggerMiddleware(RequestDelegate next, IOptions<LoggingConfiguration> options)
         {
             _next = next;
-            _logger = new LoggerService();
+            _logger = new LoggerService(options);
         }
         
         public async Task Invoke(HttpContext context)
