@@ -26,7 +26,7 @@ namespace Logger.Tools.Implementations
             _tokenInfo = new TokenInfo();
             _httpRequestInfo = new HttpRequestInfo();
 
-            errorCode = IDisplay._errorCode;
+            errorCode = IDisplay._errorCode == null ? new List<dynamic> {"-", "-" }: IDisplay._errorCode;
             
             try
             {
