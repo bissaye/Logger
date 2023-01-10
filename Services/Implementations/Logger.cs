@@ -24,7 +24,7 @@ namespace Logger.Services.Implementations
         #endregion
 
         #region Constructors
-        public Logger(string level = "Err")
+        public Logger(string level = "Inf")
         {
             _Log = new Display();
             
