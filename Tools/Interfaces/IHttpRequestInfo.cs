@@ -31,7 +31,7 @@ namespace Logger.Tools.Interfaces
                 {
                     try
                     {
-                        errorCode = jsonObject.errorCod))e;
+                        errorCode = jsonObject.errorCode;
                     }
                     catch (RuntimeBinderException)
                     {
