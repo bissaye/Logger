@@ -21,6 +21,7 @@
 		<OutputType>Library</OutputType>
 		<PackageId>Logger.Logger</PackageId>
 		<Description>
+			1.1.0 : mise à jour du format d'affichage, ajout des informations à afficher et update du middleware et des classes d'exception
 			1.0.2 : mise à jour des packages
 			1.0.1 : mise à jour du format d'affichage des logs, ajout de l'affichage du nom de l'application, des classes et des numéros de lignes
 			1.0.0 : Ce projet a pour but de produire un de créer un fournisseur de log customisé et customisable qui puisse repondre et s'adapter au besoin de n'importel quel projet
@@ -30,5 +31,7 @@
 
 	<ItemGroup>
 	  <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+	  <PackageReference Include="Newtonsoft.json" Version="13.0.2" />
+	  <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.10.0" />
 	</ItemGroup>
 </Project>
