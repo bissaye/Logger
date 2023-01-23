@@ -10,11 +10,11 @@ namespace Logger.Constantes
     {
         public static Dictionary<string, string> log_level = new()
         {
-            {"Information" , "Inf" },
-            {"Debug", "Deb" },
-            {"Trace", "Tra" },
-            {"Warning", "War" },
-            {"Error", "Err" }
+            {"Information" , "I" },
+            {"Debug", "D" },
+            {"Trace", "T" },
+            {"Warning", "W" },
+            {"Error", "E" }
         };
 
         public static Dictionary<string, int> log_level_ranking = new()

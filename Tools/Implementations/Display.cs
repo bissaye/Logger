@@ -21,7 +21,7 @@ namespace Logger.Tools.Implementations
         string terminalId;
         List<dynamic> errorCode;
 
-        public void display(DateTime date, string log_level, string message, string className, string appName, int line, string memberName)
+        public void display(DateTimeOffset date, string log_level, string message, string className, string appName, int line, string memberName)
         {
             _tokenInfo = new TokenInfo();
             _httpRequestInfo = new HttpRequestInfo();
