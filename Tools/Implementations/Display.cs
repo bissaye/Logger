@@ -55,9 +55,9 @@ namespace Logger.Tools.Implementations
             }
 
             Console.Write($"[{date}]{space}");
-            Console.BackgroundColor = ConsoleColors.color[log_level_display];
+            Console.BackgroundColor = ConsoleColors.color[log_level];
             Console.ForegroundColor = ConsoleColor.Black;
-            Console.Write($"{log_level_display}");
+            Console.Write($"{log_level}");
             Console.BackgroundColor = ConsoleColor.Black;
             Console.ForegroundColor = ConsoleColor.White;
 
