@@ -8,7 +8,7 @@ namespace Logger.Constantes
 {
     public static class ConsoleColors
     {
-        public static Dictionary<string, dynamic> color = new()
+        public static readonly Dictionary<string, dynamic> color = new()
         {
             {LogLevel.log_level_display["Information"] , ConsoleColor.DarkGreen},
             {LogLevel.log_level_display["Debug"], ConsoleColor.DarkYellow},
