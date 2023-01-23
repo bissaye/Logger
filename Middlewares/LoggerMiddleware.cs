@@ -45,17 +45,16 @@ namespace Logger.Middlewares
                     memStream.Position = 0;
                     string responseBody = new StreamReader(memStream).ReadToEnd();
                     IDisplay._errorCode = IHttpRequestInfo.getOutGoingErrorCode(responseBody);
-                    _logger.logInformation("Incomming request");
+
+                    memStream.Position = 0;
+                    await memStream.CopyToAsync(originalBody);
                 }
             }
             finally
             {
                 context.Response.Body = originalBody;
             }
-            
-            
-            await _next(context);
-
+            _logger.logInformation("Incomming request");
             
         }
     }

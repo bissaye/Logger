@@ -1,5 +1,6 @@
 ﻿using Logger.Exceptions;
 using Logger.Tools.Interfaces;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
 using System;
 using System.Collections.Generic;
@@ -17,8 +18,17 @@ namespace Logger.Tools.Implementations
         public string getToken()
         {
             string token;
-            var header = IDisplay._request.Headers;
-            var cookies = IDisplay._request.Cookies;
+            IHeaderDictionary header;
+            IRequestCookieCollection cookies;
+            try
+            {
+                header = IDisplay._request.Headers;
+                cookies = IDisplay._request.Cookies;
+            }catch
+            {
+                throw new NoTokenException("no token found");
+            }
+
             if (header.ContainsKey("Authorization"))
             {
                 token = header["Authorization"];
@@ -37,7 +47,15 @@ namespace Logger.Tools.Implementations
 
         public string getShopId()
         {
-            var token = getToken();
+            string token;
+            try
+            {
+                token = getToken();
+            }catch(NoTokenException e)
+            {
+                return "-";
+            }
+            
             string shopId;
             var handler = new JwtSecurityTokenHandler();
             var jwtSecurityToken = handler.ReadJwtToken(token);
@@ -57,7 +75,15 @@ namespace Logger.Tools.Implementations
 
         public string getTerminalId()
         {
-            var token = getToken();
+            string token;
+            try
+            {
+                token = getToken();
+            }
+            catch (NoTokenException e)
+            {
+                return "-";
+            }
             string terminalId;
             var handler = new JwtSecurityTokenHandler();
             var jwtSecurityToken = handler.ReadJwtToken(token);
