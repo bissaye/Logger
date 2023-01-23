@@ -13,14 +13,15 @@
 		<Authors>BISSAYE MBOULANA FRANCK HONORE</Authors>
 		<Company>Abyster</Company>
 		<Product>Logger</Product>
-		<Version>1.2.2</Version>
-		<AssemblyVersion>1.2.2</AssemblyVersion>
-		<FileVersion>1.2.2</FileVersion>
+		<Version>1.2.3</Version>
+		<AssemblyVersion>1.2.3</AssemblyVersion>
+		<FileVersion>1.2.3</FileVersion>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 		<OutputType>Library</OutputType>
 		<PackageId>Logger.Logger</PackageId>
 		<Description>
+			1.2.3 : correction de l'affichage du niveau de log et de la date ( timezone )
 			1.2.2 : prise en compte des logs sans informations http
 			1.2.1 : correction du middleware
 			1.2.0 : mise à jour du format d'affichage, ajout des informations à afficher et update du middleware et des classes d'exception
