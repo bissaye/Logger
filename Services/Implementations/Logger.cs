@@ -32,7 +32,7 @@ namespace Logger.Services.Implementations
             _options = options;
             try
             {
-                _log_ranking = LogLevel.log_level_ranking[_options.Value.Default];
+                _log_ranking = LogLevel.log_level_ranking[LogLevel.log_level[_options.Value.Default]];
             }
             catch (KeyNotFoundException ex)
             {
@@ -47,7 +47,7 @@ namespace Logger.Services.Implementations
             string log_level = LogLevel.log_level["Debug"];
             string log_level_display = LogLevel.log_level_display["Debug"];
             int log_level_ranking = LogLevel.log_level_ranking[log_level];
-            DateTime date = DateTime.Now;
+            DateTimeOffset date = DateTimeOffset.Now;
 
             if (log_level_ranking <= _log_ranking)
             {
@@ -63,7 +63,7 @@ namespace Logger.Services.Implementations
             string log_level = LogLevel.log_level["Error"];
             string log_level_display = LogLevel.log_level_display["Error"];
             int log_level_ranking = LogLevel.log_level_ranking[log_level];
-            DateTime date = DateTime.Now;
+            DateTimeOffset date = DateTimeOffset.Now;
 
             if (log_level_ranking <= _log_ranking)
             {
@@ -79,7 +79,7 @@ namespace Logger.Services.Implementations
             string log_level = LogLevel.log_level["Information"];
             string log_level_display = LogLevel.log_level_display["Information"];
             int log_level_ranking = LogLevel.log_level_ranking[log_level];
-            DateTime date = DateTime.Now;
+            DateTimeOffset date = DateTimeOffset.Now;
 
             if (log_level_ranking <= _log_ranking)
             {
@@ -95,7 +95,7 @@ namespace Logger.Services.Implementations
             string log_level = LogLevel.log_level["Trace"];
             string log_level_display = LogLevel.log_level_display["Trace"];
             int log_level_ranking = LogLevel.log_level_ranking[log_level];
-            DateTime date = DateTime.Now;
+            DateTimeOffset date = DateTimeOffset.Now;
             
             if (log_level_ranking <= _log_ranking)
             {
@@ -111,7 +111,7 @@ namespace Logger.Services.Implementations
             string log_level = LogLevel.log_level["Warning"];
             string log_level_display = LogLevel.log_level_display["Warning"];
             int log_level_ranking = LogLevel.log_level_ranking[log_level];
-            DateTime date = DateTime.Now;
+            DateTimeOffset date = DateTimeOffset.Now;
             
             if (log_level_ranking <= _log_ranking)
             {
