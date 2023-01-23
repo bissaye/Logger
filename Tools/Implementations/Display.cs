@@ -26,7 +26,7 @@ namespace Logger.Tools.Implementations
             _tokenInfo = new TokenInfo();
             _httpRequestInfo = new HttpRequestInfo();
 
-            errorCode = IDisplay._errorCode;
+            errorCode = IDisplay._errorCode == null ? new List<dynamic> {"-", "-" }: IDisplay._errorCode;
             
             try
             {
@@ -55,9 +55,9 @@ namespace Logger.Tools.Implementations
             }
 
             Console.Write($"[{date}]{space}");
-            Console.BackgroundColor = ConsoleColors.color[log_level];
+            Console.BackgroundColor = ConsoleColors.color[log_level_display];
             Console.ForegroundColor = ConsoleColor.Black;
-            Console.Write($"{log_level}");
+            Console.Write($"{log_level_display}");
             Console.BackgroundColor = ConsoleColor.Black;
             Console.ForegroundColor = ConsoleColor.White;
 
