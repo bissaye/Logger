@@ -10,11 +10,11 @@ namespace Logger.Constantes
     {
         public static readonly Dictionary<string, dynamic> color = new()
         {
-            {LogLevel.log_level_display["Information"] , ConsoleColor.DarkGreen},
-            {LogLevel.log_level_display["Debug"], ConsoleColor.DarkYellow},
-            {LogLevel.log_level_display["Trace"], ConsoleColor.Yellow },
-            {LogLevel.log_level_display["Warning"], ConsoleColor.DarkCyan },
-            {LogLevel.log_level_display["Error"], ConsoleColor.DarkRed }
+            {LogLevel.log_level["Information"] , ConsoleColor.DarkGreen},
+            {LogLevel.log_level["Debug"], ConsoleColor.DarkYellow},
+            {LogLevel.log_level["Trace"], ConsoleColor.Yellow },
+            {LogLevel.log_level["Warning"], ConsoleColor.DarkCyan },
+            {LogLevel.log_level["Error"], ConsoleColor.DarkRed }
         };
     }
 }
