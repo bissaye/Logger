@@ -45,13 +45,12 @@ namespace Logger.Services.Implementations
         public string logDebug(string message, [CallerLineNumber] int lineNumber = 0, [CallerMemberName] string memberName = "")
         {
             string log_level = LogLevel.log_level["Debug"];
-            string log_level_display = LogLevel.log_level_display["Debug"];
             int log_level_ranking = LogLevel.log_level_ranking[log_level];
             DateTimeOffset date = DateTimeOffset.Now;
 
             if (log_level_ranking <= _log_ranking)
             {
-                _Log.display(date, log_level_display, message, _className, _appName, lineNumber, memberName);
+                _Log.display(date, log_level, message, _className, _appName, lineNumber, memberName);
             }
             
             string log = $"{date} : {log_level} : {message}";
@@ -61,13 +60,12 @@ namespace Logger.Services.Implementations
         public string logError(string message, [CallerLineNumber] int lineNumber = 0, [CallerMemberName] string memberName = "")
         {
             string log_level = LogLevel.log_level["Error"];
-            string log_level_display = LogLevel.log_level_display["Error"];
             int log_level_ranking = LogLevel.log_level_ranking[log_level];
             DateTimeOffset date = DateTimeOffset.Now;
 
             if (log_level_ranking <= _log_ranking)
             {
-                _Log.display(date, log_level_display, message, _className, _appName, lineNumber, memberName);
+                _Log.display(date, log_level, message, _className, _appName, lineNumber, memberName);
             }
             
             string log = $"{date} : {log_level} : {message}";
@@ -77,13 +75,12 @@ namespace Logger.Services.Implementations
         public string logInformation(string message, [CallerLineNumber] int lineNumber = 0, [CallerMemberName] string memberName = "")
         {
             string log_level = LogLevel.log_level["Information"];
-            string log_level_display = LogLevel.log_level_display["Information"];
             int log_level_ranking = LogLevel.log_level_ranking[log_level];
             DateTimeOffset date = DateTimeOffset.Now;
 
             if (log_level_ranking <= _log_ranking)
             {
-                _Log.display(date, log_level_display, message, _className, _appName, lineNumber, memberName);
+                _Log.display(date, log_level, message, _className, _appName, lineNumber, memberName);
             }
             
             string log = $"{date} : {log_level} : {message}";
@@ -93,13 +90,12 @@ namespace Logger.Services.Implementations
         public string logTrace(string message, [CallerLineNumber] int lineNumber = 0, [CallerMemberName] string memberName = "")
         {
             string log_level = LogLevel.log_level["Trace"];
-            string log_level_display = LogLevel.log_level_display["Trace"];
             int log_level_ranking = LogLevel.log_level_ranking[log_level];
             DateTimeOffset date = DateTimeOffset.Now;
             
             if (log_level_ranking <= _log_ranking)
             {
-                _Log.display(date, log_level_display, message, _className, _appName, lineNumber, memberName);
+                _Log.display(date, log_level, message, _className, _appName, lineNumber, memberName);
             }
             
             string log = $"{date} : {log_level} : {message}";
@@ -109,13 +105,12 @@ namespace Logger.Services.Implementations
         public string logWarning(string message, [CallerLineNumber] int lineNumber = 0, [CallerMemberName] string memberName = "")
         {
             string log_level = LogLevel.log_level["Warning"];
-            string log_level_display = LogLevel.log_level_display["Warning"];
             int log_level_ranking = LogLevel.log_level_ranking[log_level];
             DateTimeOffset date = DateTimeOffset.Now;
             
             if (log_level_ranking <= _log_ranking)
             {
-                _Log.display(date, log_level_display, message, _className, _appName, lineNumber, memberName);
+                _Log.display(date, log_level, message, _className, _appName, lineNumber, memberName);
             }
                                     
             string log = $"{date} : {log_level} : {message}";
