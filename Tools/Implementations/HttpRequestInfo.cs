@@ -23,5 +23,16 @@ namespace Logger.Tools.Implementations
         {
             return "";
         }
+
+        public string getRequestBody()
+        {
+            #if DEBUG
+            if (!string.IsNullOrWhiteSpace(IHttpRequestInfo.requestBody))
+            {
+                return IHttpRequestInfo.requestBody;
+            }
+            #endif
+            return "-";
+        }
     }
 }

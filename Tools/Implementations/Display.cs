@@ -24,9 +24,11 @@ namespace Logger.Tools.Implementations
         private string logString;
         private string shopId;
         private string terminalId;
+        private string requestBody;
+        private string dateGMT;
         private List<dynamic> errorCode;
 
-        public void display(DateTimeOffset date, string log_level, string message, string className, string appName, int line, string memberName)
+        public void display(DateTime date, string log_level, string message, string className, string appName, int line, string memberName)
         {
             _tokenInfo = new TokenInfo();
             _httpRequestInfo = new HttpRequestInfo();
@@ -40,7 +42,7 @@ namespace Logger.Tools.Implementations
                     endpoint = defaultIfNull;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 endpoint = defaultIfNull;
             }
@@ -71,15 +73,30 @@ namespace Logger.Tools.Implementations
                 terminalId = defaultIfNull;
             }
 
-            Console.Write($"[{date}]{space}");
-            Console.BackgroundColor = ConsoleColors.color[log_level];
-            Console.ForegroundColor = ConsoleColor.Black;
+            // Test if debug mode
+            try
+            {
+                requestBody = _httpRequestInfo.getRequestBody();
+            }
+            catch (BadTokenException)
+            {
+                requestBody = defaultIfNull;
+            }
+            catch (NoTokenException)
+            {
+                requestBody = defaultIfNull;
+            }
+            dateGMT = date.ToLocalTime().ToString("dd-MM-yyyy HH:mm:ss\"GMT\" %K");
+            Console.Write($"[{dateGMT}]{space}");
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.ForegroundColor = ConsoleColors.color[log_level];
             Console.Write($"{log_level}");
             Console.BackgroundColor = ConsoleColor.Black;
             Console.ForegroundColor = ConsoleColor.White;
 
             logString = $"{space}{appName}{space}{className}{space}{memberName}[{line}]{space}{endpoint}{space}" +
-                $"{errorCode[0]}{space}{errorCode[1]}{space}{shopId}{space}{terminalId}{space}{IDisplay._clientIpAddress}{space}\"{message}\"";
+                $"{errorCode[0]}{space}{errorCode[1]}{space}{shopId}{space}{terminalId}{space}{IDisplay._clientIpAddress}" +
+                $"{space}[{requestBody}] \"{message}\"";
 
             Console.WriteLine(logString);
         }
