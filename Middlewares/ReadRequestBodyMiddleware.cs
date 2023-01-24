@@ -42,7 +42,7 @@ namespace Logger.Middlewares
                     injectedRequestStream.Write(bytesToWrite, 0, bytesToWrite.Length);
                     injectedRequestStream.Seek(0, SeekOrigin.Begin);
                     context.Request.Body = injectedRequestStream;
-                    Console.WriteLine($"REQUEST BODY : {requestLog}");
+                    //Console.WriteLine($"REQUEST BODY : {requestLog}");
                     
                     IHttpRequestInfo.requestBody = requestLog;
 
