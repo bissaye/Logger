@@ -14,6 +14,6 @@ namespace Logger.Tools.Interfaces
         public static List<dynamic> _errorCode;
         public static string _clientIpAddress;
         public static string _serverIpAddress;
-        public void display(DateTimeOffset date, string log_level, string message, string className, string appName, int line, string memberName);
+        public void display(DateTime date, string log_level, string message, string className, string appName, int line, string memberName);
     }
 }
