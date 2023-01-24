@@ -78,7 +78,8 @@ namespace Logger.Tools.Implementations
             Console.BackgroundColor = ConsoleColor.Black;
             Console.ForegroundColor = ConsoleColor.White;
 
-            logString = $"{space}{appName}{space}{className}{space}{memberName}[{line}]{space}{endpoint}{space}{errorCode[0]}{space}{errorCode[1]}{space}{shopId}{space}{terminalId}{space}{IDisplay._clientIpAddress}{space}\"{message}\"";
+            logString = $"{space}{appName}{space}{className}{space}{memberName}[{line}]{space}{endpoint}{space}" +
+                $"{errorCode[0]}{space}{errorCode[1]}{space}{shopId}{space}{terminalId}{space}{IDisplay._clientIpAddress}{space}\"{message}\"";
 
             Console.WriteLine(logString);
         }
