@@ -13,13 +13,18 @@ namespace Logger.Tools.Implementations
 {
     public class Display : IDisplay
     {
+
+        private const string space = "  ";
+        private const string defaultIfNull = "-";
+
         private TokenInfo _tokenInfo;
         private HttpRequestInfo _httpRequestInfo;
-        private string space = "  ";
-        string logString;
-        string shopId;
-        string terminalId;
-        List<dynamic> errorCode;
+
+        private string endpoint;
+        private string logString;
+        private string shopId;
+        private string terminalId;
+        private List<dynamic> errorCode;
 
         public void display(DateTimeOffset date, string log_level, string message, string className, string appName, int line, string memberName)
         {
@@ -27,18 +32,30 @@ namespace Logger.Tools.Implementations
             _httpRequestInfo = new HttpRequestInfo();
 
             errorCode = IDisplay._errorCode == null ? new List<dynamic> {"-", "-" }: IDisplay._errorCode;
-            
+            try
+            {
+                endpoint = IDisplay._request.Path;
+                if (endpoint == null || endpoint == "")
+                {
+                    endpoint = defaultIfNull;
+                }
+            }
+            catch (Exception ex)
+            {
+                endpoint = defaultIfNull;
+            }
+
             try
             {
                 shopId = _tokenInfo.getShopId();
             }
             catch (BadTokenException)
             {
-                shopId = "-";
+                shopId = defaultIfNull;
             }
             catch (NoTokenException)
             {
-                shopId = "-";
+                shopId = defaultIfNull;
             }
 
             try
@@ -47,11 +64,11 @@ namespace Logger.Tools.Implementations
             }
             catch (BadTokenException)
             {   
-                terminalId = "-";
+                terminalId = defaultIfNull;
             }
             catch (NoTokenException)
             {
-                terminalId = "-";
+                terminalId = defaultIfNull;
             }
 
             Console.Write($"[{date}]{space}");
@@ -61,7 +78,7 @@ namespace Logger.Tools.Implementations
             Console.BackgroundColor = ConsoleColor.Black;
             Console.ForegroundColor = ConsoleColor.White;
 
-            logString = $"{space}{appName}{space}{className}{space}{memberName}[{line}]{space}{errorCode[0]}{space}{errorCode[1]}{space}{shopId}{space}{terminalId}{space}{IDisplay._clientIpAddress}{space}\"{message}\"";
+            logString = $"{space}{appName}{space}{className}{space}{memberName}[{line}]{space}{endpoint}{space}{errorCode[0]}{space}{errorCode[1]}{space}{shopId}{space}{terminalId}{space}{IDisplay._clientIpAddress}{space}\"{message}\"";
 
             Console.WriteLine(logString);
         }
