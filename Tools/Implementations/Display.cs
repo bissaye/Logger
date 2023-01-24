@@ -86,7 +86,7 @@ namespace Logger.Tools.Implementations
             {
                 requestBody = defaultIfNull;
             }
-            dateGMT = date.ToLocalTime().ToString("dd-MM-yyyy HH:mm:ss\"GMT\" %K");
+            dateGMT = date.ToLocalTime().ToString("dd-MM-yyyy HH:mm:ss \"GMT\" %K");
             Console.Write($"[{dateGMT}]{space}");
             Console.BackgroundColor = ConsoleColor.Black;
             Console.ForegroundColor = ConsoleColors.color[log_level];
