@@ -35,6 +35,7 @@ namespace Logger.Middlewares
             IDisplay._clientIpAddress = context.Connection.RemoteIpAddress?.ToString();
             IDisplay._serverIpAddress = feature?.LocalIpAddress.ToString();
             Stream originalBody = context.Response.Body;
+            
             try
             {
                 var response = context.Response;
@@ -54,7 +55,6 @@ namespace Logger.Middlewares
             {
                 context.Response.Body = originalBody;
             }
-            _logger.logInformation("Incomming request");
             
         }
     }

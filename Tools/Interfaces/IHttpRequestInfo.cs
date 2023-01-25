@@ -1,4 +1,5 @@
-﻿using Microsoft.CSharp.RuntimeBinder;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.CSharp.RuntimeBinder;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -10,13 +11,25 @@ namespace Logger.Tools.Interfaces
 {
     public interface IHttpRequestInfo
     {
+        public static string requestBody;
+
         public static  List<dynamic> getOutGoingErrorCode(string requestBodyMemStream)
         {
             var body = requestBodyMemStream;
             string httpCode = IDisplay._response.StatusCode.GetHashCode().ToString();
             int errorCode;
-
-            var jsonObject = JsonConvert.DeserializeObject<dynamic>(body);
+            dynamic jsonObject;
+            
+            try
+            {
+                jsonObject = JsonConvert.DeserializeObject<dynamic>(body);
+            }
+            catch(Exception)
+            {
+                jsonObject = null;
+                Console.WriteLine("Format json invalid");
+            }            
+            
             try
             {
                 errorCode = jsonObject.errorNumber;
@@ -44,6 +57,7 @@ namespace Logger.Tools.Interfaces
         public List<dynamic> getInComingErrorCode();
         public string getCorrelationId();
         public string createCorrelationId();
+        public string getRequestBody();
         
     }
 }
