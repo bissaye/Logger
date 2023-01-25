@@ -9,6 +9,7 @@ namespace Logger.Tools.Interfaces
 {
     public interface IDisplay
     {
+        public static string _correlationId = null;
         public static HttpRequest _request;
         public static HttpResponse _response;
         public static List<dynamic> _errorCode;

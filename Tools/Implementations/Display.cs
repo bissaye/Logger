@@ -26,6 +26,7 @@ namespace Logger.Tools.Implementations
         private string requestBody;
         private string dateGMT;
         private string host;
+        private string correlationID;
         private List<dynamic> errorCode;
 
         public void display(DateTime date, string log_level, string message, string className, string appName, int line, string memberName)
@@ -102,6 +103,15 @@ namespace Logger.Tools.Implementations
             }
 
 
+            if(IDisplay._correlationId == null)
+            {
+                correlationID = defaultIfNull;
+            }
+            else
+            {
+                correlationID = IDisplay._correlationId;
+            }
+
             dateGMT = date.ToLocalTime().ToString("dd-MM-yyyy HH:mm:ss \"GMT\" %K");
             Console.Write($"[{dateGMT}]{space}");
             Console.BackgroundColor = ConsoleColor.Black;
@@ -112,7 +122,8 @@ namespace Logger.Tools.Implementations
 
             logString = $"{space}{appName}{space}{className}{space}{memberName}[{line}]{space}{host}{space}{endpoint}{space}" +
                 $"{errorCode[0]}{space}{errorCode[1]}{space}{shopId}{space}{terminalId}{space}{IDisplay._clientIpAddress}" +
-                $"{space}[{requestBody}] \"{message}\"";
+                $"{space}{IDisplay._correlationId}"+
+                $"{space}[{requestBody}]{space}\"{message}\"";
 
             Console.WriteLine(logString);
         }
