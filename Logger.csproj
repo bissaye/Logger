@@ -13,14 +13,15 @@
 		<Authors>BISSAYE MBOULANA FRANCK HONORE</Authors>
 		<Company>Abyster</Company>
 		<Product>Logger</Product>
-		<Version>1.2.4</Version>
-		<AssemblyVersion>1.2.4</AssemblyVersion>
-		<FileVersion>1.2.4</FileVersion>
+		<Version>1.2.5</Version>
+		<AssemblyVersion>1.2.5</AssemblyVersion>
+		<FileVersion>1.2.5</FileVersion>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 		<OutputType>Library</OutputType>
 		<PackageId>Logger.Logger</PackageId>
 		<Description>
+			1.2.5 : mise à jour de la timezone et ajout du host et du corps de la requette en debug
 			1.2.4 : affichage du endpoint dans les logs
 			1.2.3 : correction de l'affichage du niveau de log et de la date ( timezone )
 			1.2.2 : prise en compte des logs sans informations http
