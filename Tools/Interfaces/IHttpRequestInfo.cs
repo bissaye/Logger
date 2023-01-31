@@ -56,7 +56,7 @@ namespace Logger.Tools.Interfaces
         }
         public List<dynamic> getInComingErrorCode();
         public string getCorrelationId();
-        public string getRequestBody();
+        public string getRequestBody(int log_level_ranking);
         
     }
 }

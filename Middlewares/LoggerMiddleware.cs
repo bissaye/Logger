@@ -55,7 +55,8 @@ namespace Logger.Middlewares
             {
                 context.Response.Body = originalBody;
             }
-            
+
+            _logger.logInformation("InComing Request");
         }
     }
 

@@ -36,7 +36,7 @@ namespace Logger.Services.Implementations
             }
             catch (KeyNotFoundException ex)
             {
-                _log_ranking = LogLevel.log_level_ranking["Information"];
+                _log_ranking = LogLevel.log_level_ranking[LogLevel.log_level["Information"]];
             }
         }
         #endregion

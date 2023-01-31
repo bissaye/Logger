@@ -1,6 +1,8 @@
-﻿using Logger.Exceptions;
+﻿using Logger.Constantes;
+using Logger.Exceptions;
 using Logger.Tools.Interfaces;
 using Microsoft.CSharp.RuntimeBinder;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -49,14 +51,16 @@ namespace Logger.Tools.Implementations
             return IDisplay._correlationId;
         }
 
-        public string getRequestBody()
+        public string getRequestBody(int log_level_ranking)
         {
-            #if DEBUG
-            if (!string.IsNullOrWhiteSpace(IHttpRequestInfo.requestBody))
+            if (LogLevel.log_level_ranking["D"] <= log_level_ranking)
             {
-                return IHttpRequestInfo.requestBody;
+                if (!string.IsNullOrWhiteSpace(IHttpRequestInfo.requestBody))
+                {
+                    return IHttpRequestInfo.requestBody;
+                }
             }
-            #endif
+
             return "-";
         }
     }

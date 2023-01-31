@@ -28,11 +28,19 @@ namespace Logger.Tools.Implementations
         private string host;
         private string correlationID;
         private List<dynamic> errorCode;
-
+        private int log_level_ranking;
         public void display(DateTime date, string log_level, string message, string className, string appName, int line, string memberName)
         {
             _tokenInfo = new TokenInfo();
             _httpRequestInfo = new HttpRequestInfo();
+            try
+            {
+                log_level_ranking = LogLevel.log_level_ranking[log_level];
+            }
+            catch
+            {
+                log_level_ranking = LogLevel.log_level_ranking["Information"];
+            }
 
             errorCode = IDisplay._errorCode == null ? new List<dynamic> {"-", "-" }: IDisplay._errorCode;
             
@@ -91,7 +99,7 @@ namespace Logger.Tools.Implementations
             // Test if debug mode
             try
             {
-                requestBody = _httpRequestInfo.getRequestBody();
+                requestBody = _httpRequestInfo.getRequestBody(log_level_ranking);
             }
             catch (BadTokenException)
             {
@@ -113,7 +121,7 @@ namespace Logger.Tools.Implementations
             }
 
             dateGMT = date.ToLocalTime().ToString("dd-MM-yyyy HH:mm:ss \"GMT\" %K");
-            Console.Write($"[{dateGMT}]{space}");
+            Console.Write($"\n\n[{dateGMT}]{space}");
             Console.BackgroundColor = ConsoleColor.Black;
             Console.ForegroundColor = ConsoleColors.color[log_level];
             Console.Write($"{log_level}");
@@ -122,8 +130,8 @@ namespace Logger.Tools.Implementations
 
             logString = $"{space}{appName}{space}{className}{space}{memberName}[{line}]{space}{host}{space}{endpoint}{space}" +
                 $"{errorCode[0]}{space}{errorCode[1]}{space}{shopId}{space}{terminalId}{space}{IDisplay._clientIpAddress}" +
-                $"{space}{IDisplay._correlationId}"+
-                $"{space}[{requestBody}]{space}\"{message}\"";
+                $"{space}[{requestBody}]{space}\"{message}\"" +
+                $"{space}{IDisplay._correlationId}";
 
             Console.WriteLine(logString);
         }
